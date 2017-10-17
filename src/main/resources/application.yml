@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: springbootdemo
+  datasource:
+    platform: h2
+  data:
+    rest:
+      default-page-size: 10
+      max-page-size: 50
+    mongodb:
+      host: 192.168.56.101
+      database: springbootdemo
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+  cache:
+    cache-names: dictCache
+  redis:
+    host: 192.168.56.101
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+
+---
+spring:
+  profiles: staging.env
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    platform: mysql
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.56.101/depository
+    username: depository
+    password: P@ssw0rd
+logging:
+  path: target/
